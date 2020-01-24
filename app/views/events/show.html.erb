@@ -1,0 +1,12 @@
+<div class="wrapper-events">
+  <p><b>Type</b>: <%= @event.event_type %></p>
+  <p><b>Status</b>: <%= @event.aasm_state == 'finished' ? "#{@event.aasm_state} at #{@event.scheduled_date}" : @event.aasm_state %></p>
+  <p><b>Subject</b>: <%= @event.subject %></p>
+  <p><b>Body</b>: <%= @event.body %></p>
+  <% if @event.aasm_state != 'finished' %>
+    <p><b>Start date</b>: <%= datetime_format(@event.scheduled_date) %></p>
+  <% end %>
+  <% if @event.event_type == 'interval_event' %>
+    <p><b>Interval</b>: <%= @event.time_interval %> seconds</p>
+  <% end %>
+</div>

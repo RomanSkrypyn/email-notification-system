@@ -1,0 +1,30 @@
+<div class="form-group">
+  <%= f.label :subject %>
+  <%= f.text_field :subject, class: 'form-control' %>
+</div>
+<div class="form-group">
+  <%= f.label :body %>
+  <%= f.text_area :body, class: 'form-control' %>
+</div>
+<div class="form-group">
+  <%= f.label :event_type %>
+  <%= f.select :event_type, [['Interval event', 'interval_event'], ['Single occurrence event', 'single_occurrence_event']], { prompt: 'Select a type' }, { class: 'form-control' } %>
+</div>
+<div class="form-group" id="event-days">
+  <%= f.label :days %>
+  <%= f.select :days, [['Sunday', 'sunday'], ['Monday', 'monday'], ['Tuesday', 'tuesday'], ['Wednesday', 'wednesday'], ['Thursday', 'thursday'], ['Friday', 'friday'], ['Saturday', 'saturday']], { include_hidden: false }, { multiple: true, class: 'form-control' } %>
+</div>
+<div class="form-group" id="event-scheduled-date">
+  <%= f.label :scheduled_date, class: 'scheduled-date-label' %>
+  <%= f.datetime_select :scheduled_date, {}, { class: 'form-control scheduled-date' } %>
+</div>
+<div class="form-group" id="event-time-interval">
+  <%= f.label :time_interval %>
+  <%= f.number_field :time_interval, min: 600, class: 'form-control', 'aria-describedby': 'timeIntervalHelpBlock' %>
+  <small id='timeIntervalHelpBlock' class="form-text text-muted">
+    Time in seconds. Minimum 600 sec (10 min)
+  </small>
+</div>
+<div class="form-group">
+  <%= f.submit :Send, class: 'btn btn-primary' %>
+</div>
