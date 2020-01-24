@@ -1,0 +1,39 @@
+<% if @events.present? %>
+  <table class="table wrapper-events">
+    <tr>
+      <th>Subject</th>
+      <th>Body</th>
+      <th>Type</th>
+      <th>Scheduled date</th>
+      <th>Status</th>
+      <th>Show</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+    <% @events.each do |event| %>
+      <tr>
+        <td><%= event.subject %></td>
+        <td><%= event.body %></td>
+        <td><%= event.event_type %></td>
+        <td><%= datetime_format(event.scheduled_date) %></td>
+        <td><%= event.aasm_state %></td>
+        <td>
+          <%= link_to 'show', event_path(event.id) %>
+        </td>
+        <td>
+          <%= link_to 'edit', edit_event_path(event.id) %>
+        </td>
+        <td>
+          <%= link_to 'delete', event_path(event.id), method: :delete %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <div class="wrapper-events">
+    <p class="text-center">No events</p>
+  </div>
+<% end %>
+<div class="row">
+  <%= link_to 'Add event', new_event_path, class: 'btn btn-primary' %>
+</div>

@@ -1,0 +1,17 @@
+#event-days, #event-scheduled-date, #event-time-interval {
+  display: none;
+}
+
+.wrapper {
+  &-events {
+    margin: 30px 0 30px 0;
+
+    .scheduled-date {
+      display: inline-block;
+      width: auto!important;
+      &-label {
+        display: block;
+      }
+    }
+  }
+}
