@@ -15,7 +15,7 @@
         <td><%= event.subject %></td>
         <td><%= event.body %></td>
         <td><%= event.event_type %></td>
-        <td><%= datetime_format(event.scheduled_date) %></td>
+        <td><%= datetime_format(event.scheduled_date_at) %></td>
         <td><%= event.aasm_state %></td>
         <td>
           <%= link_to 'show', event_path(event.id) %>

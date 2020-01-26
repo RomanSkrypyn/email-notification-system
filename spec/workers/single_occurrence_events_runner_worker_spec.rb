@@ -5,17 +5,27 @@ require 'sidekiq/testing'
 Sidekiq::Testing.fake!
 
 RSpec.describe SingleOccurrenceEventsRunnerWorker, type: :worker do
-  let(:scheduled_job) { described_class.perform_async }
 
-  it 'job in correct queue' do
-    described_class.perform_async
-    assert_equal 'default', described_class.queue
+  describe 'SingleOccurrenceEventsRunnerWorker perform' do
+    before do
+      event
+      described_class.perform_async
+      Sidekiq::Worker.drain_all
+    end
+
+    it 'should change event state to finished' do
+      expect(Event.find(event.id)).to have_state(:finished)
+    end
   end
 
-  it 'goes into the jobs array for testing environment' do
-    expect do
-      described_class.perform_async
-    end.to change(described_class.jobs, :size).by(1)
-    described_class.new.perform
+
+  private
+
+  def user
+    @user ||= FactoryBot.create(:user)
+  end
+
+  def event
+    @event ||= FactoryBot.create(:event, event_type: 'single_occurrence_event', scheduled_date_at: (Date.current - 1), user: user)
   end
 end
