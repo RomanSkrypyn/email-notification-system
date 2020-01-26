@@ -1,4 +1,4 @@
-<% if current_user %>
+<% if user_signed_in? %>
   <div class="dropdown show text-right">
     <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <%= current_user.email %>

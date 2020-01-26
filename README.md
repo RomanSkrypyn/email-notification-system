@@ -13,22 +13,14 @@ Things you may want to cover:
 
 ## Configuration
 
-You need to run redis in specific tab
+You need to run `foreman`
 
-`redis-server`
+`foreman start -f Procfile.dev`
 
-You need to run sidekiq in specific tab
+Set up Ruby dependencies, database
 
-`sidekiq`
-
-Database config:
-
-* `rake db:create`
-* `rake db:migrate`
-
-Run application:
-
-`rails server`
+* `cd app`
+* `./bin/setup`
 
 How to run the test suite:
 

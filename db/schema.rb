@@ -17,15 +17,19 @@ ActiveRecord::Schema.define(version: 2020_01_23_103536) do
 
   create_table "events", force: :cascade do |t|
     t.string "subject"
-    t.string "body"
-    t.string "event_type"
-    t.datetime "scheduled_date"
+    t.text "body"
+    t.integer "event_type"
+    t.datetime "scheduled_date_at"
     t.string "days", array: true
     t.integer "time_interval"
     t.string "aasm_state"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["aasm_state"], name: "index_events_on_aasm_state"
+    t.index ["days"], name: "index_events_on_days"
+    t.index ["event_type"], name: "index_events_on_event_type"
+    t.index ["scheduled_date_at"], name: "index_events_on_scheduled_date_at"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 

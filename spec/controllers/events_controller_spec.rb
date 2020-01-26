@@ -10,8 +10,11 @@ RSpec.describe EventsController, type: :controller do
   describe "GET #index" do
     before { get :index }
 
-    it 'returns all events' do
+    it 'should has status :success' do
       expect(response).to have_http_status(:success)
+    end
+
+    it 'returns all events' do
       expect(assigns(:events).count).to eq(Event.count)
     end
 
@@ -26,7 +29,7 @@ RSpec.describe EventsController, type: :controller do
     context 'with valid params' do
 
       let(:params) do
-        { event: { subject: 'Hello', body: 'Some text', event_type: 'single_occurrence_event', scheduled_date: DateTime.now } }
+        { event: { subject: 'Hello', body: 'Some text', event_type: 'single_occurrence_event', scheduled_date_at: DateTime.now } }
       end
 
       it 'should create new event' do
@@ -38,7 +41,7 @@ RSpec.describe EventsController, type: :controller do
       before { subject }
 
       let(:params) do
-        { event: { subject: 'Hello', body: 'Some text', event_type: 'single_occurrence_event', scheduled_date: nil } }
+        { event: { subject: 'Hello', body: 'Some text', event_type: 'single_occurrence_event', scheduled_date_at: nil } }
       end
 
       it 'should raise error' do
@@ -55,8 +58,8 @@ RSpec.describe EventsController, type: :controller do
 
   def events
     @events ||= [
-        FactoryBot.create(:event, event_type: 'single_occurrence_event', user: user),
-        FactoryBot.create(:event, event_type: 'interval_event', days: ['friday'], time_interval: 600, user: user)
+      FactoryBot.create(:event, event_type: 'single_occurrence_event', user: user),
+      FactoryBot.create(:event, event_type: 'interval_event', days: ['friday'], time_interval: 600, user: user)
     ].sort_by(&:id)
   end
 end

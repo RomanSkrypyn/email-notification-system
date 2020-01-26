@@ -8,15 +8,15 @@
 </div>
 <div class="form-group">
   <%= f.label :event_type %>
-  <%= f.select :event_type, [['Interval event', 'interval_event'], ['Single occurrence event', 'single_occurrence_event']], { prompt: 'Select a type' }, { class: 'form-control' } %>
+  <%= f.select :event_type, [['Interval event', :interval_event], ['Single occurrence event', :single_occurrence_event]], { prompt: 'Select a type' }, { class: 'form-control' } %>
 </div>
 <div class="form-group" id="event-days">
   <%= f.label :days %>
   <%= f.select :days, [['Sunday', 'sunday'], ['Monday', 'monday'], ['Tuesday', 'tuesday'], ['Wednesday', 'wednesday'], ['Thursday', 'thursday'], ['Friday', 'friday'], ['Saturday', 'saturday']], { include_hidden: false }, { multiple: true, class: 'form-control' } %>
 </div>
 <div class="form-group" id="event-scheduled-date">
-  <%= f.label :scheduled_date, class: 'scheduled-date-label' %>
-  <%= f.datetime_select :scheduled_date, {}, { class: 'form-control scheduled-date' } %>
+  <%= f.label :scheduled_date_at, class: 'scheduled-date-label' %>
+  <%= f.datetime_select :scheduled_date_at, {}, { class: 'form-control scheduled-date' } %>
 </div>
 <div class="form-group" id="event-time-interval">
   <%= f.label :time_interval %>
